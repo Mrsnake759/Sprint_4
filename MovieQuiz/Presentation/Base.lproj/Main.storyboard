@@ -86,8 +86,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="noButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WND-XX-V7Y"/>
-                                            <action selector="noButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ffD-pk-e0k"/>
+                                            <action selector="noButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J1x-iV-ctB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euo-xv-oiT" userLabel="Yes Button">
@@ -104,7 +103,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="yesButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D3J-fC-fdL"/>
+                                            <action selector="yesButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ngv-mu-PQw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -126,15 +125,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="indexLabel" destination="twt-Sf-S6i" id="qph-ys-eXx"/>
-                        <outlet property="previewImage" destination="JGi-Yt-Scc" id="RFv-DX-ech"/>
-                        <outlet property="questionLabel" destination="z9X-yE-yB3" id="aDj-dg-Vkd"/>
-                        <outlet property="questionTitle" destination="Asi-be-2DH" id="RKr-PT-48e"/>
+                        <outlet property="counterLabel" destination="twt-Sf-S6i" id="HVF-gl-0hp"/>
+                        <outlet property="imageView" destination="JGi-Yt-Scc" id="gXr-0a-jwT"/>
+                        <outlet property="textLabel" destination="z9X-yE-yB3" id="eKy-9W-Fia"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55.813953488372093" y="55.36480686695279"/>
+            <point key="canvasLocation" x="-55.072463768115945" y="55.580357142857139"/>
         </scene>
     </scenes>
     <resources>
