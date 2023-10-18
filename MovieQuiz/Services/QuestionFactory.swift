@@ -1,6 +1,5 @@
 import Foundation
 
-
 class QuestionFactory: QuestionFactoryProtocol {
     
     weak var delegate: QuestionFactoryDelegate?

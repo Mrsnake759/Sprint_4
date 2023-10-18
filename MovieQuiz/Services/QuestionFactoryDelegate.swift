@@ -1,5 +1,5 @@
 import Foundation
 
 protocol QuestionFactoryDelegate: AnyObject {
-    func didReceiveNextQuestion(question: QuizeQuestion?)
+    func didReceiveNextQuestion(question: QuizQuestion?)
 }

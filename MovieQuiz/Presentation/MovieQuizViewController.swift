@@ -16,6 +16,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenter?
+    private var statisticService: StatisticService?
     
     // MARK: - View Life Cycles
     override func viewDidLoad() {
@@ -23,11 +24,11 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         
         questionFactory = QuestionFactory(delegate: self)
         
-//        questionFactory?.requestNextQuestion()
-        
         alertPresenter = AlertPresenter(view: self)
         
         questionFactory?.requestNextQuestion()
+        
+        statisticService = StatisticServiceImplementation() 
     }
     
     // MARK: - QuestionFactoryDelegate
@@ -97,14 +98,20 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         }
     }
     
-    private func showNextQuestionOrResults(){
+    private func showNextQuestionOrResults() {
         
         imageView.layer.borderWidth = 0
         
         if currentQuestionIndex == questionsAmount - 1 {
-            let text = correctAnswer == questionsAmount ?
-                        "Поздравляем, вы ответили на 10 из 10!" :
-                        "Вы ответили на \(correctAnswer) из 10, попробуйте ещё раз!"
+            var text = "Ваш результат \(correctAnswer)/\(questionsAmount)"
+            if let statisticService = statisticService {
+                    statisticService.store(correct: correctAnswer, total: questionsAmount)
+                    text += """
+                    \nКоличество сыгранных квизов: \(statisticService.gamesCount)
+                    Рекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total) (\(statisticService.bestGame.date.dateTimeString))
+                    Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%
+                    """
+            }
             let viewModel = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
                 text: text,
@@ -114,7 +121,9 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             currentQuestionIndex += 1
             
             questionFactory?.requestNextQuestion()
+            
         }
+        
     }
     
     private func show(quiz result: QuizResultsViewModel) {
