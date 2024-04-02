@@ -3,10 +3,6 @@ import UIKit
 final class MovieQuizViewController: UIViewController {
     // MARK: - Lifecycle
     
-    //    Спасибо, что дал еще одну попытку)
-    //    По поводу 5 пункта в задании трактуется "После выбора ответа на вопрос через 1 секунду автоматически появляется следующий вопрос;",
-    //    поэтому я и подумал, что мы этот баг поправим в следующем спринте
-    
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
@@ -49,9 +45,9 @@ final class MovieQuizViewController: UIViewController {
             text: "Рейтинг этого фильма больше чем 6?",
             correctAnswer: false)
     ]
-    
+    // переменная, которая хранит в себе текущий индекс вопроса
     private var currentQuestionIndex = 0
-    
+    // переменная, которая хранит в себе количество правильных вопросов
     private var correctAnswer = 0
     
     struct QuizQuestion {
@@ -74,6 +70,7 @@ final class MovieQuizViewController: UIViewController {
         show(quiz: QuizStepViewModel(image: UIImage(named: "The Godfather") ?? UIImage(), question: "Рейтинг этого фильма больше чем 6?", questionNumber: "1/10"))
     }
     
+    // метод конвертации мокового вопроса во вью модель для главного экрана
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         let questionStep = QuizStepViewModel(
             image: UIImage(named: model.image) ?? UIImage(),
@@ -82,13 +79,14 @@ final class MovieQuizViewController: UIViewController {
         return questionStep
     }
     
-    
+    // метод показа мокового вопроса на главном экране
     private func show(quiz step: QuizStepViewModel) {
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
     }
     
+    // метод для подсчета правильных вопросов и покраски рамки
     private func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
             correctAnswer += 1
@@ -105,6 +103,7 @@ final class MovieQuizViewController: UIViewController {
         }
     }
     
+    // метод, который показывает резальтат квиза или же следующий вопрос
     private func showNextQuestionOrResults(){
         
         imageView.layer.borderWidth = 0
@@ -126,6 +125,7 @@ final class MovieQuizViewController: UIViewController {
         }
     }
     
+    // метод финального алерта 
     private func show(quiz result: QuizResultsViewModel) {
         let alert = UIAlertController(
             title: result.title,
